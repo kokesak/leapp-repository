@@ -24,9 +24,8 @@ def test_actor_more_ethX(current_actor_context):
                            devpath="/devices/hidraw/hidraw0")]
     current_actor_context.feed(PersistentNetNamesFacts(interfaces=interface))
     current_actor_context.run()
-    generated_report = Report
-    assert current_actor_context.consume(generated_report)
-    assert 'inhibitor' in current_actor_context.consume(generated_report)[0].flags
+    assert current_actor_context.consume(Report)
+    assert 'inhibitor' in current_actor_context.consume(Report)[0].report['flags']
 
 
 def test_actor_single_int_not_ethX(current_actor_context):
@@ -50,6 +49,5 @@ def test_actor_ethX_and_not_ethX(current_actor_context):
                            devpath="/devices/hidraw/hidraw0")]
     current_actor_context.feed(PersistentNetNamesFacts(interfaces=interface))
     current_actor_context.run()
-    generated_report = Report
-    assert current_actor_context.consume(generated_report)
-    assert 'inhibitor' in current_actor_context.consume(generated_report)[0].flags
+    assert current_actor_context.consume(Report)
+    assert 'inhibitor' in current_actor_context.consume(Report)[0].report['flags']
